@@ -1,0 +1,160 @@
+[
+  /* default VIM Emulation and modification */
+  { "keys": [":"], "command": "show_overlay", "args": {"overlay": "command_palette"},
+    "context": [{"key": "setting.command_mode"}]
+  },
+  { // swap cmd-r and space-r
+    "keys": [" ", "r"],
+    "command": "show_overlay",
+    "args": {"overlay": "goto", "text": "@"},
+    "context": [{"key": "setting.command_mode"}]
+  },
+  { "keys": ["super+r"],
+    "command": "goto_symbol_in_project"
+  },
+  { // U for redo, matching u for undo
+    "keys": ["U"],
+    "command": "redo",
+    "context": [{"key": "setting.command_mode"}]
+  },
+  { // swap ctrl+r and U
+    "keys": ["ctrl+r"],
+    "command": "visual_upper_case",
+    "context": [
+      {"key": "setting.command_mode"},
+      {"key": "selection_empty", "operator": "equal", "operand": false, "match_all": false}
+    ]
+  },
+  { // backspace to go prev tab
+    "keys": ["backspace"],
+    "command": "prev_view",
+    "context": [{"key": "setting.command_mode"}]
+  },
+  { // tab to go next tab
+    "keys": ["tab"],
+    "command": "next_view",
+    "context": [{"key": "setting.command_mode"}]
+  },
+  { // replace ^
+    "keys": ["ctrl+h"],
+    "command": "set_motion",
+    "args": {
+      "motion": "vi_move_to_first_non_white_space_character",
+      "motion_args": {"extend": true},
+      "clip_to_line": true
+    },
+    "context": [{"key": "setting.command_mode"}]
+  },
+  { // replace $
+    "keys": ["ctrl+l"],
+    "command": "set_motion",
+    "args": {
+      "motion": "vi_move_to_hard_eol",
+      "motion_args": {"repeat": 1, "extend": true},
+      "inclusive": true,
+      "clip_to_line": true
+    },
+    "context": [{"key": "setting.command_mode"}]
+  },
+  { // Jump forward 5 lines
+    "keys": ["g", "j"],
+    "command": "bind_repeat_motion",
+    "args": {
+      "motion": "move",
+      "motion_args": {
+        "by": "lines", "forward": true, "extend": true, "linewise": true, "amount": 5
+      }
+    },
+    "context": [{"key": "setting.command_mode"}]
+  },
+  { // Go backward 5 lines
+    "keys": ["g", "k"],
+    "command": "bind_repeat_motion",
+    "args": {
+      "motion": "move",
+      "motion_args": {
+        "by": "lines", "forward": false, "extend": true, "linewise": true, "amount": 5
+      }
+    },
+    "context": [{"key": "setting.command_mode"}]
+  },
+  { // Jump forward 10 lines
+  	"keys": ["J"],
+  	"command": "bind_repeat_motion",
+  	"args": {
+  		"motion": "move",
+  		"motion_args": {
+        "by": "lines", "forward": true, "extend": true, "linewise": true, "amount": 10
+      }
+  	},
+  	"context": [{"key": "setting.command_mode"}]
+  },
+  { // Go backward 10 lines
+    "keys": ["K"],
+    "command": "bind_repeat_motion",
+    "args": {
+      "motion": "move",
+      "motion_args": {
+        "by": "lines", "forward": false, "extend": true, "linewise": true, "amount": 10
+      }
+    },
+    "context": [{"key": "setting.command_mode"}]
+  },
+
+  /* Plugins Key Bindings */
+
+  { // overwrite Emmet
+    "keys": ["ctrl+e"],
+    "command": "move_to",
+    "args": {"to": "eol", "extend": false}
+  },
+  { // useful for tags like <md-button>
+    "keys": [
+      "ctrl+,"
+    ],
+    "args": {
+      "action": "expand_abbreviation"
+    },
+    "command": "run_emmet_action",
+    "context": [
+      {
+        "key": "emmet_action_enabled.expand_abbreviation"
+      }
+    ]
+  },
+
+  // Advanced New File
+  { // add new file
+    "keys": [" ", "m", "a"],
+    "command": "advanced_new_file_new",
+    "context": [{"key": "setting.command_mode"}]
+  },
+  { // delete current file
+    "keys": [" ", "m", "d"],
+    "command": "advanced_new_file_delete",
+    "args": {"current": true},
+    "context": [{"key": "setting.command_mode"}]
+  },
+  { // rename file
+    "keys": [" ", "m", "m"],
+    "command": "advanced_new_file_move",
+    "context": [{"key": "setting.command_mode"}]
+  },
+  { // copy file
+    "keys": [" ", "m", "c"],
+    "command": "advanced_new_file_copy",
+    "context": [{"key": "setting.command_mode"}]
+  },
+
+  // Path Tools
+  {
+    "keys": [" ", "c", "p"],
+    "command": "copy_path",
+    "context": [{"key": "setting.command_mode"}]
+  },
+  {
+    "keys": [" ", "c", "d"],
+    "command": "copy_file_directory",
+    "context": [{"key": "setting.command_mode"}]
+  }
+]
